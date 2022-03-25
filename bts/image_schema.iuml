@@ -1,0 +1,40 @@
+@startuml
+entity ImageEntry {
+	+ project_id: integer
+	--
+	+ season_id: integer
+	--
+	+ level: integer
+	--
+	+ attribute_type: integer
+	--
+	+ value: float
+	--
+	+ attribute_id: integer
+	--
+	+ subject_id: integer
+}
+
+enum LevelEnum {
+	1: Non-Lux
+	2: Lux
+}
+enum AttributeTypeEnum {
+	1: Rational
+	2: Emotinal
+}
+entity ImageAttribute {
+	name: string
+	--
+	type: integer
+	--
+	level: integer
+}
+
+
+ImageEntry::attribute_type --> AttributeTypeEnum
+ImageEntry::level --> LevelEnum
+ImageAttribute::attribute_type --> AttributeTypeEnum
+ImageAttribute::level --> LevelEnum
+ImageEntry::attribute_id --> ImageAttribute
+
